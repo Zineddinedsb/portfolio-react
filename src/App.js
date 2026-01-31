@@ -5,7 +5,10 @@ import emailjs from "@emailjs/browser";
 import './App.css';
 emailjs.init("9rq094AsqGtTC12se");
 
+
 export default function App() {
+  
+  
   const [currentPage, setCurrentPage] = useState('intro');
   const [activeNav, setActiveNav] = useState('home');
   const [formData, setFormData] = useState({
@@ -13,6 +16,7 @@ export default function App() {
     user_email: '',
     message: ''
   });
+  
   const [introComplete, setIntroComplete] = useState(false);
   const [msgStatus, setMsgStatus] = useState("");
 const [msgColor, setMsgColor] = useState("black");
@@ -295,6 +299,7 @@ const handleFormSubmit = (e) => {
 // HEADER / NAVIGATION COMPONENT
 // ============================================
 function Header({ activeNav, onNavClick }) {
+  
   return (
     <header>
       <div className="div-list">
@@ -665,6 +670,7 @@ function Contact({ formData, onFormChange, onFormSubmit ,msgStatus, msgColor }) 
             </form>
           </div>
         </div>
+        
       </div>
     </section>
   );
