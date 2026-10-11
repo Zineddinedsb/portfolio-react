@@ -237,6 +237,7 @@ const handleFormSubmit = (e) => {
           
           <Home />
           <About />
+          <Project />
           <Services />
           {/* <Contact formData={formData} onFormChange={handleFormChange} onFormSubmit={handleFormSubmit} /> */}
           <Contact 
@@ -268,6 +269,10 @@ function Header({ activeNav, onNavClick }) {
           <li className={activeNav === 'about' ? 'active' : ''}>
             <i className="fa-regular fa-address-card"></i>
             <a href="#about" onClick={() => onNavClick('about')}>About</a>
+          </li>
+          <li className={activeNav === 'project' ? 'active' : ''}>
+            <i className="fa-regular fa-folder-open"></i>
+            <a href="#project" onClick={() => onNavClick('project')}>Projects</a>
           </li>
           <li className={activeNav === 'service' ? 'active' : ''}>
             <i className="fa-solid fa-code"></i>
@@ -363,6 +368,62 @@ function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+// ============================================
+// PROJECTS SECTION
+// ============================================
+function Project() {
+  const projects = [
+    {
+      id: 'evalphp',
+      icon: 'fa-graduation-cap',
+      title: 'EvalPHP Academy',
+      description: 'A learning and assessment platform for managing courses, quizzes, student accounts, and exam results.',
+      tools: ['PHP', 'MySQL', 'JavaScript']
+    },
+    {
+      id: 'portfolio-react',
+      icon: 'fa-code',
+      title: 'Personal Portfolio',
+      description: 'A responsive React portfolio featuring a custom design, service information, and a working contact form.',
+      tools: ['React', 'JavaScript', 'CSS']
+    },
+    {
+      id: 'portfolio-web',
+      icon: 'fa-window-maximize',
+      title: 'Portfolio Website',
+      description: 'An earlier responsive portfolio built with animated sections, smooth navigation, and EmailJS contact.',
+      tools: ['HTML', 'CSS', 'JavaScript']
+    }
+  ];
+
+  return (
+    <section className="project reveal" id="project">
+      <p>PROJECTS</p>
+      <h1>Selected Work</h1>
+      <hr />
+      <div className="info-pro">
+        <p>A selection of web applications and portfolio work.</p>
+      </div>
+      <div className="projects-container">
+        {projects.map(project => <ProjectCard key={project.id} project={project} />)}
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ project }) {
+  return (
+    <article className="project-card">
+      <div className="repo-card-top"><i className={`fa-solid ${project.icon}`}></i></div>
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
+      <div className="skills">
+        {project.tools.map(tool => <span key={tool}>{tool}</span>)}
+      </div>
+    </article>
   );
 }
 
