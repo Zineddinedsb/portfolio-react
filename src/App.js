@@ -9,7 +9,7 @@ emailjs.init("9rq094AsqGtTC12se");
 export default function App() {
   
   
-  const [currentPage, setCurrentPage] = useState('intro');
+  const currentPage = 'real-site';
   const [activeNav, setActiveNav] = useState('home');
   const [formData, setFormData] = useState({
     user_name: '',
@@ -17,52 +17,12 @@ export default function App() {
     message: ''
   });
   
-  const [introComplete, setIntroComplete] = useState(false);
   const [msgStatus, setMsgStatus] = useState("");
 const [msgColor, setMsgColor] = useState("black");
 
   
-  useEffect(() => {
-    const animations = [
-      { selector: ".top-tags", class: "from-top", delay: 0 },
-      { selector: ".left h1", class: "from-left", delay: 0.3 },
-      { selector: ".desc", class: "from-left", delay: 0.6 },
-      { selector: ".live-line", class: "from-bottom", delay: 0.9 },
-      { selector: ".buttons", class: "zoom-in", delay: 1.2 },
-      { selector: ".site-link", class: "from-bottom", delay: 1.5 },
-      { selector: ".right", class: "from-right", delay: 0.6 },
-      { selector: ".stats", class: "from-bottom", delay: 1.8 },
-    ];
-
-    animations.forEach(item => {
-      const el = document.querySelector(item.selector);
-      if (el) {
-        el.style.animationDelay = `${item.delay}s`;
-        el.classList.add(item.class);
-      }
-    });
-
-    
-    const introTimer = setTimeout(() => {
-      const intro = document.getElementById("intro");
-      if (intro) {
-        intro.classList.add("smooth-out");
-        
-        setTimeout(() => {
-          setCurrentPage('real-site');
-          setActiveNav('home');
-          setIntroComplete(true);
-        }, 1200);
-      }
-    }, 3800);
-
-    return () => clearTimeout(introTimer);
-  }, []);
-
   
   useEffect(() => {
-    if (!introComplete) return;
-
     const initScrollAnimations = () => {
       const elements = document.querySelectorAll(
         ".slide-in-left, .slide-in-right, .slide-in-up, .reveal"
@@ -85,12 +45,10 @@ const [msgColor, setMsgColor] = useState("black");
     };
 
     initScrollAnimations();
-  }, [introComplete]);
+  }, []);
 
   // ===== SCROLL NAVBAR DETECTION =====
   useEffect(() => {
-    if (!introComplete) return;
-
     const handleScroll = () => {
       const sections = document.querySelectorAll("section");
       let current = "";
@@ -110,7 +68,7 @@ const [msgColor, setMsgColor] = useState("black");
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [introComplete]);
+  }, []);
 
   // ===== SMOOTH SCROLL ANCHOR LINKS =====
   useEffect(() => {
@@ -132,7 +90,7 @@ const [msgColor, setMsgColor] = useState("black");
 
     document.addEventListener("click", handleAnchorClick);
     return () => document.removeEventListener("click", handleAnchorClick);
-  }, [introComplete]);
+  }, []);
 
   // Handle navigation
   const handleNavClick = (section) => {
@@ -171,20 +129,20 @@ const handleFormSubmit = (e) => {
     .then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
-        setMsgStatus("✓ Message sent successfully! I'll reply soon.");
+        setMsgStatus("�?�?? Message sent successfully! I'll reply soon.");
         setMsgColor("green");
-        // Réinitialiser le formulaire
+        // R�?�initialiser le formulaire
         setFormData({
           user_name: '',
           user_email: '',
           message: ''
         });
-        // Effacer le message après 3 secondes
+        // Effacer le message apr�?�s 3 secondes
         setTimeout(() => setMsgStatus(""), 3000);
       },
       (error) => {
         console.log("FAILED...", error);
-        setMsgStatus("✗ Failed to send message. Please try again.");
+        setMsgStatus("�?�?? Failed to send message. Please try again.");
         setMsgColor("red");
       }
     );
@@ -199,7 +157,7 @@ const handleFormSubmit = (e) => {
             <div className="card">
               {/* TOP TAGS */}
               <div className="top-tags">
-                <span className="dot">● SYSTEM READY</span>
+                <span className="dot">�??�? SYSTEM READY</span>
                 <span>PORTFOLIO 2026</span>
                 <span>UI LOADING</span>
               </div>
@@ -342,10 +300,11 @@ function Home() {
       <div className="home-container">
         <div className="home-section">
           <div className="info-home">
-            <h1>Hi, I'm Zineddine</h1>
-            <h3>Full Stack Developer</h3>
+            <p className="eyebrow">FULL STACK DEVELOPER �?� ALGERIA</p>
+            <h1>Hi, I�?��?�m <span>Zineddine</span></h1>
+            <h3>I build thoughtful digital experiences.</h3>
             <div className="info-p">
-              <p>I create beautiful, functional, and user-centered digital experiences.With a strong passion for web development, I bring ideas to life throughclean code and thoughtful design.</p>
+              <p>I design and develop fast, accessible websites and applications, turning ambitious ideas into useful products.</p>
               
             </div>
             <div className="info-p2">
@@ -353,8 +312,8 @@ function Home() {
               <p><i className="fa-solid fa-briefcase"></i> Available Now</p>
             </div>
             <div className="btnn">
-              <button className="btn-home1"><i className="fa-solid fa-arrow-right"></i> Hire Me</button>
-             <a href="/cv-zineddine.pdf" download className="btn-home2">
+              <a href="#contact" className="btn-home1"><i className="fa-solid fa-arrow-right"></i> Let�?��?�s work together</a>
+             <a href={`${process.env.PUBLIC_URL}/cv-zineddine.pdf`} download className="btn-home2">
   <i className="fa-solid fa-download"></i> Download CV</a>
 
             </div>
@@ -376,7 +335,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <img src="images/img2.jpg" alt="Profile" />
+        <img src={`${process.env.PUBLIC_URL}/images/img2.jpg`} alt="Portrait of Zineddine" />
       </div>
     </section>
   );
@@ -390,7 +349,7 @@ function About() {
     <section className="about reveal" id="about">
       <div className="about-info">
         <div className="img-about">
-          <img src="images/img.jpg" alt="Profile" />
+          <img src={`${process.env.PUBLIC_URL}/images/img.jpg`} alt="Portrait of Zineddine" />
         </div>
         <div className="info-text">
           <h5>@ZINEDDINE</h5>
@@ -403,7 +362,7 @@ function About() {
          <p>I'm Zineddine, a web development student exploring diverse fields of technology - from software and web development to artificial intelligence solutions. My goal is to continuously grow my skills and expand my horizons.</p>
         </div>
         <div className="photo-container">
-          <img src="images/img.jpg" alt="Profile" />
+          <img src={`${process.env.PUBLIC_URL}/images/img.jpg`} alt="Portrait of Zineddine" />
           <span className="tape tape1"></span>
           <span className="tape tape2"></span>
         </div>
@@ -416,65 +375,35 @@ function About() {
 // PROJECTS SECTION
 // ============================================
 function Project() {
-  const projects = [
-    {
-      id: 1,
-      img: 'images/Cleveroad.jpg',
-      title: 'E-Commerce Website',
-      desc: 'Modern online store with product filtering, cart, and payment system.',
-      skills: ['HTML', 'CSS', 'JavaScript']
-    },
-    {
-      id: 2,
-      img: 'images/Capture d\'écran 2025-10-22 182207.png',
-      title: 'Portfolio Website',
-      desc: 'Personal portfolio to showcase my design and coding projects.',
-      skills: ['HTML', 'CSS', 'Bootstrap']
-    },
-    {
-      id: 3,
-      img: 'images/Weather Forecast Dashboard.jpg',
-      title: 'Weather App',
-      desc: 'Responsive app showing real-time weather data using API integration.',
-      skills: ['HTML', 'CSS', 'API']
-    },
-    {
-      id: 4,
-      img: 'images/WordPress dashboard design concept.jpg',
-      title: 'Blog Website',
-      desc: 'Clean and simple blogging platform with markdown support.',
-      skills: ['HTML', 'Tailwind', 'JavaScript']
-    },
-    {
-      id: 5,
-      img: 'images/Game Dashboard Design.jpg',
-      title: 'Game Landing Page',
-      desc: 'Landing page for a game with animations and parallax effects.',
-      skills: ['HTML', 'CSS', 'GSAP']
-    },
-    {
-      id: 6,
-      img: 'images/Task manager app.jpg',
-      title: 'Task Manager',
-      desc: 'Task tracking web app with CRUD features and clean UI.',
-      skills: ['HTML', 'CSS', 'JS']
-    }
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/Zineddinedsb/repos?sort=updated&per_page=100')
+      .then(response => {
+        if (!response.ok) throw new Error('Unable to load repositories');
+        return response.json();
+      })
+      .then(repositories => setProjects(repositories.filter(repo => !repo.fork && !repo.archived).slice(0, 6)))
+      .catch(() => setProjects([]))
+      .finally(() => setLoading(false));
+  }, []);
+
 
   return (
     <section className="project reveal" id="project">
       <p>PROJECTS</p>
-      <h1>Featured Work</h1>
+      <h1>Mes projets GitHub</h1>
       <hr />
-      <div className="info-pro">
-        <p>A showcase of my recent projects demonstrating expertise in full-stack</p>
-        <p>development, modern frameworks, and creative problem-solving.</p>
-      </div>
+      <div className="info-pro"><p>Decouvrez mes depots publics et le code source de mes projets.</p></div>
       <div className="projects-container">
+        {loading && <p className="projects-message">Chargement des projets...</p>}
+        {!loading && projects.length === 0 && <p className="projects-message">Aucun depot public disponible pour le moment. Consultez mon profil GitHub pour voir mes projets.</p>}
         {projects.map(project => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+      <a className="github-all-link" href="https://github.com/Zineddinedsb?tab=repositories" target="_blank" rel="noopener noreferrer">Voir tous mes depots <i className="fa-solid fa-arrow-up-right-from-square"></i></a>
     </section>
   );
 }
@@ -483,17 +412,13 @@ function Project() {
 function ProjectCard({ project }) {
   return (
     <div className="project-card">
-      <img src={project.img} alt={project.title} />
-      <h3>{project.title}</h3>
-      <p>{project.desc}</p>
-      <div className="skills">
-        {project.skills.map((skill, idx) => (
-          <a key={idx} href="#">{skill}</a>
-        ))}
-      </div>
-      <div className="btns">
-        <a href="#" className="btn"><i className="fab fa-github"></i> GitHub</a>
-        <a href="#" className="btn"><i className="fas fa-external-link-alt"></i> Live Demo</a>
+      <div className="repo-card-top"><i className="fa-regular fa-folder-open"></i><span><i className="fa-regular fa-star"></i> {project.stargazers_count}</span></div>
+      <h3>{project.name.replace(/[-_]/g, ' ')}</h3>
+      <p>{project.description || 'Depot de code public sur GitHub.'}</p>
+      <div className="skills">{project.language && <span>{project.language}</span>}</div>
+      <div className="repo-links">
+        <a href={project.html_url} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-github"></i> Code source</a>
+        {project.homepage && <a href={project.homepage} target="_blank" rel="noopener noreferrer"><i className="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>}
       </div>
     </div>
   );
@@ -551,7 +476,7 @@ function Services() {
   return (
     <section id="service" className="section services reveal">
       <p>SERVICES</p>
-      <h1>OUR Features & Services</h1>
+      <h1>What I can help you build</h1>
       <hr />
       <div className="container">
         <div className="services-content">
@@ -600,7 +525,7 @@ function Contact({ formData, onFormChange, onFormSubmit ,msgStatus, msgColor }) 
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                <span>zinousebih128@@gmail.com</span>
+                <a href="mailto:zinousebih128@gmail.com">zinousebih128@gmail.com</a>
               </div>
               <div className="contact-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
