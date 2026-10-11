@@ -129,20 +129,20 @@ const handleFormSubmit = (e) => {
     .then(
       (response) => {
         console.log("SUCCESS!", response.status, response.text);
-        setMsgStatus("�?�?? Message sent successfully! I'll reply soon.");
+        setMsgStatus("Message sent successfully! I will reply soon.");
         setMsgColor("green");
-        // R�?�initialiser le formulaire
+        // Reset the form after a successful send.
         setFormData({
           user_name: '',
           user_email: '',
           message: ''
         });
-        // Effacer le message apr�?�s 3 secondes
+        // Clear the confirmation after three seconds.
         setTimeout(() => setMsgStatus(""), 3000);
       },
       (error) => {
         console.log("FAILED...", error);
-        setMsgStatus("�?�?? Failed to send message. Please try again.");
+        setMsgStatus("Message failed to send. Please try again.");
         setMsgColor("red");
       }
     );
@@ -157,7 +157,7 @@ const handleFormSubmit = (e) => {
             <div className="card">
               {/* TOP TAGS */}
               <div className="top-tags">
-                <span className="dot">�??�? SYSTEM READY</span>
+                <span className="dot">SYSTEM READY</span>
                 <span>PORTFOLIO 2026</span>
                 <span>UI LOADING</span>
               </div>
@@ -312,7 +312,7 @@ function Home() {
               <p><i className="fa-solid fa-briefcase"></i> Available Now</p>
             </div>
             <div className="btnn">
-              <a href="#contact" className="btn-home1"><i className="fa-solid fa-arrow-right"></i> Let�?��?�s work together</a>
+              <a href="#contact" className="btn-home1"><i className="fa-solid fa-arrow-right"></i> Let's work together</a>
              <a href={`${process.env.PUBLIC_URL}/cv-zineddine.pdf`} download className="btn-home2">
   <i className="fa-solid fa-download"></i> Download CV</a>
 

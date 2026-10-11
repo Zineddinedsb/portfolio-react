@@ -1464,6 +1464,128 @@ hr {
   }
 }
 
+/* Consistent, accessible actions across the site */
+.btn-home1,
+.btn-home2,
+.contact-form .btn,
+.repo-links a,
+.github-all-link {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.btn-home1 {
+  color: #092018;
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 8px 22px rgba(115, 224, 189, .16);
+}
+
+.btn-home2,
+.repo-links a,
+.github-all-link {
+  color: #e8f1ee;
+  background: rgba(255, 255, 255, .04);
+  border-color: var(--line);
+}
+
+.contact-form .btn {
+  width: 100%;
+  color: #092018;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.repo-links a,
+.github-all-link {
+  min-width: 44px;
+  font-size: 13px;
+}
+
+.follow ul a {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+.btn-home1:hover,
+.contact-form .btn:hover {
+  color: #071711;
+  background: #9af0d2;
+  border-color: #9af0d2;
+  box-shadow: 0 10px 26px rgba(115, 224, 189, .24);
+  transform: translateY(-2px);
+}
+
+.btn-home2:hover,
+.repo-links a:hover,
+.github-all-link:hover {
+  color: var(--accent);
+  background: rgba(115, 224, 189, .08);
+  border-color: rgba(115, 224, 189, .45);
+  transform: translateY(-2px);
+}
+
+.follow ul a:hover {
+  background: rgba(115, 224, 189, .1);
+  transform: translateY(-2px);
+}
+
+.btn-home1:active,
+.btn-home2:active,
+.contact-form .btn:active,
+.repo-links a:active,
+.github-all-link:active,
+.follow ul a:active {
+  transform: translateY(0);
+}
+
+.btn-home1:focus-visible,
+.btn-home2:focus-visible,
+.contact-form .btn:focus-visible,
+.repo-links a:focus-visible,
+.github-all-link:focus-visible,
+.follow ul a:focus-visible {
+  outline: 3px solid rgba(115, 224, 189, .55);
+  outline-offset: 3px;
+}
+
+.contact-form .btn:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 560px) {
+  .btnn {
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 10px;
+    padding-bottom: 0;
+  }
+
+  .btn-home1,
+  .btn-home2 {
+    width: 100%;
+  }
+}
+
 /* Font imports */
 body {
   font-family: 'Inter', sans-serif;
