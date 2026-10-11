@@ -351,10 +351,10 @@ function About() {
           <p>Full Stack Developer</p>
         </div>
       </div>
-      <h3>ABOUT ME</h3>
+      <h3>ABOUT</h3>
       <div className="about-info2">
         <div className="about-text">
-         <p>I'm Zineddine, a web development student exploring diverse fields of technology - from software and web development to artificial intelligence solutions. My goal is to continuously grow my skills and expand my horizons.</p>
+          <p>I'm Zineddine, a full stack developer based in Algeria. I build responsive web applications with React and JavaScript on the frontend, and PHP and MySQL on the backend. I care about intuitive interfaces, reliable functionality, and maintainable code, and I enjoy taking a project from its first idea through implementation.</p>
         </div>
         <div className="photo-container">
           <img src={`${process.env.PUBLIC_URL}/images/img.jpg`} alt="Portrait of Zineddine" />
