@@ -300,8 +300,8 @@ function Home() {
       <div className="home-container">
         <div className="home-section">
           <div className="info-home">
-            <p className="eyebrow">FULL STACK DEVELOPER �?� ALGERIA</p>
-            <h1>Hi, I�?��?�m <span>Zineddine</span></h1>
+            <p className="eyebrow">FULL STACK DEVELOPER <span aria-hidden="true">&middot;</span> ALGERIA</p>
+            <h1>Hi, I'm <span>Zineddine</span></h1>
             <h3>I build thoughtful digital experiences.</h3>
             <div className="info-p">
               <p>I design and develop fast, accessible websites and applications, turning ambitious ideas into useful products.</p>
