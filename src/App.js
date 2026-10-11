@@ -237,7 +237,6 @@ const handleFormSubmit = (e) => {
           
           <Home />
           <About />
-          <Project />
           <Services />
           {/* <Contact formData={formData} onFormChange={handleFormChange} onFormSubmit={handleFormSubmit} /> */}
           <Contact 
@@ -269,10 +268,6 @@ function Header({ activeNav, onNavClick }) {
           <li className={activeNav === 'about' ? 'active' : ''}>
             <i className="fa-regular fa-address-card"></i>
             <a href="#about" onClick={() => onNavClick('about')}>About</a>
-          </li>
-          <li className={activeNav === 'project' ? 'active' : ''}>
-            <i className="fa-regular fa-folder-open"></i>
-            <a href="#project" onClick={() => onNavClick('project')}>Projects</a>
           </li>
           <li className={activeNav === 'service' ? 'active' : ''}>
             <i className="fa-solid fa-code"></i>
@@ -368,59 +363,6 @@ function About() {
         </div>
       </div>
     </section>
-  );
-}
-
-// ============================================
-// PROJECTS SECTION
-// ============================================
-function Project() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('https://api.github.com/users/Zineddinedsb/repos?sort=updated&per_page=100')
-      .then(response => {
-        if (!response.ok) throw new Error('Unable to load repositories');
-        return response.json();
-      })
-      .then(repositories => setProjects(repositories.filter(repo => !repo.fork && !repo.archived).slice(0, 6)))
-      .catch(() => setProjects([]))
-      .finally(() => setLoading(false));
-  }, []);
-
-
-  return (
-    <section className="project reveal" id="project">
-      <p>PROJECTS</p>
-      <h1>Mes projets GitHub</h1>
-      <hr />
-      <div className="info-pro"><p>Decouvrez mes depots publics et le code source de mes projets.</p></div>
-      <div className="projects-container">
-        {loading && <p className="projects-message">Chargement des projets...</p>}
-        {!loading && projects.length === 0 && <p className="projects-message">Aucun depot public disponible pour le moment. Consultez mon profil GitHub pour voir mes projets.</p>}
-        {projects.map(project => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
-      <a className="github-all-link" href="https://github.com/Zineddinedsb?tab=repositories" target="_blank" rel="noopener noreferrer">Voir tous mes depots <i className="fa-solid fa-arrow-up-right-from-square"></i></a>
-    </section>
-  );
-}
-
-// Project Card Component
-function ProjectCard({ project }) {
-  return (
-    <div className="project-card">
-      <div className="repo-card-top"><i className="fa-regular fa-folder-open"></i><span><i className="fa-regular fa-star"></i> {project.stargazers_count}</span></div>
-      <h3>{project.name.replace(/[-_]/g, ' ')}</h3>
-      <p>{project.description || 'Depot de code public sur GitHub.'}</p>
-      <div className="skills">{project.language && <span>{project.language}</span>}</div>
-      <div className="repo-links">
-        <a href={project.html_url} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-github"></i> Code source</a>
-        {project.homepage && <a href={project.homepage} target="_blank" rel="noopener noreferrer"><i className="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>}
-      </div>
-    </div>
   );
 }
 
